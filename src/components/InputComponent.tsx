@@ -27,7 +27,7 @@ const CustomInput: React.FC<NewNoteInput> = ({ addNote }) => {
             value={note}
             name="note"
             placeholder="note"
-            className='input'
+            className="input"
           />
           <button
             style={{
