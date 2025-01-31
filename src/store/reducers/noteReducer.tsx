@@ -5,15 +5,13 @@ export interface notetype {
 }
 
 const initialValue = {
-  notes: ['leull'],
+  notes: [],
 }
 type addAction = {
   type: 'ADD_NOTE'
-  payload: string
+  payload: any
 }
-type editNote = {
-  
-}
+
 export const noteReducer = (state: notetype = initialValue, action: Action) => {
   switch (action.type) {
     case 'ADD_NOTE': {
