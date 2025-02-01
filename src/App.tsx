@@ -3,10 +3,11 @@ import './App.css'
 import editIcon from './assets/editing.png'
 import deleteIcon from './assets/delete.png'
 import plusIcon from './assets/plus.png'
-import CustomInput from './components/InputComponent'
-import { useDispatch } from 'react-redux'
+import CustomInput from './components/custominput/InputComponent'
+// import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import Login from './components/login/login'
+import NoteBox from './components/notebox'
 function App() {
   const [addNoteInputs, setaddNoteInputs] = useState(false)
   const [search, setSearch] = useState('')
@@ -25,12 +26,12 @@ function App() {
       return
     }
   }, [search])
-  console.log('USDUSUDSD', userData)
+  const handleToogle = () => setaddNoteInputs(!addNoteInputs)
   return (
     <>
       {userData.id ? (
         <div className="mainApp">
-          {addNoteInputs && <CustomInput removeBox={setaddNoteInputs(true)} />}
+          {addNoteInputs && <CustomInput toggleNoteBox={handleToogle} />}
           <div className="boxWrapper">
             <div className="sidebar">
               <h2 className="Title">{userData?.username}</h2>
@@ -74,24 +75,7 @@ function App() {
                       </div>
                     ))
                   : userData?.notes.map((note, i) => (
-                      <div key={i} className="notebox">
-                        <h2 className="boxtitle">{note?.title}</h2>
-                        <div className="wrapLines">
-                          {[1, 2, 3, 4, 5, 6, 7].map((it, i) => (
-                            <div key={i} className="lines" />
-                          ))}
-                        </div>
-                        <p className="boxnote">{note?.note}</p>
-                        <div className="Edits">
-                          <img src={editIcon} alt="s" className="editbtn" />
-                          <img
-                            src={deleteIcon}
-                            // onClick={deleteAll(note?.title)}
-                            alt="s"
-                            className="editbtn"
-                          />
-                        </div>
-                      </div>
+                    <NoteBox data={note}/>
                     ))}
               </div>
             </div>

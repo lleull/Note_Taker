@@ -1,14 +1,14 @@
 import React, { ChangeEvent, useState } from 'react'
 import './CustomInput.css'
-import plusicon from './../assets/plus.png'
-import { arrayUnion, collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore'
+import plusicon from './../../assets/plus.png'
+import { arrayUnion, doc, getDocs, query, updateDoc, where } from 'firebase/firestore'
 import { useSelector } from 'react-redux'
-import { db } from '../lib/firebase'
+import { db } from '../../lib/firebase'
 interface NewNoteInput {
-  removeBox: any
+  toggleNoteBox: any
 }
 
-const CustomInput: React.FC<NewNoteInput> = ({ removeBox }) => {
+const CustomInput: React.FC<NewNoteInput> = ({ toggleNoteBox }) => {
   const [note, setnote] = useState('')
   const [title, setTitle] = useState('')
   const userinfo = useSelector((state) => state?.userData)
@@ -29,7 +29,7 @@ const CustomInput: React.FC<NewNoteInput> = ({ removeBox }) => {
           note,
         }),
       })
-      removeBox()
+      toggleNoteBox()
     } catch (error) {
       console.log('err', error)
     }
