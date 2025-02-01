@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
-import editIcon from "./assets/editing.png"
-import deleteIcon from "./assets/delete.png"
+import editIcon from './assets/editing.png'
+import deleteIcon from './assets/delete.png'
 import plusIcon from './assets/plus.png'
 import CustomInput from './components/InputComponent'
 import { useDispatch } from 'react-redux'
@@ -57,9 +57,13 @@ function App() {
                       ))}
                     </div>
                     <p className="boxnote">{it?.note}</p>
-                    <div className='Edits'>
-                    <img src={editIcon} alt="s" className="editbtn" />
-                    <img src={deleteIcon} alt="s" className="editbtn" />
+                    <div className="Edits">
+                      <img src={editIcon} alt="s" className="editbtn" />
+                      <img
+                        src={deleteIcon}
+                        alt="s"
+                        className="editbtn"
+                      />
                     </div>
                   </div>
                 ))}
