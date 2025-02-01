@@ -20,7 +20,7 @@ const CustomInput: React.FC<NewNoteInput> = ({ toggleNoteBox }) => {
     setTitle(e.target.value)
   }
 
-  const handleLogin = async () => {
+  const handleAddNote = async () => {
     try {
       const userRef = doc(db, 'users', userinfo?.id)
       await updateDoc(userRef, {
@@ -39,8 +39,8 @@ const CustomInput: React.FC<NewNoteInput> = ({ toggleNoteBox }) => {
     <>
       <div className="mainnote">
         {/* <h1>Vite React</h1> */}
+        <div className="form">
         <h1 className="header">Add Note</h1>
-        <div className="box">
           <input
             onChange={(e) => updateTitle(e)}
             type="text"
@@ -55,9 +55,9 @@ const CustomInput: React.FC<NewNoteInput> = ({ toggleNoteBox }) => {
             value={note}
             name="note"
             placeholder="note"
-            className="inputmore"
+            className="input"
           />
-          <button className="btn" onClick={handleLogin}>
+          <button className='btn'  onClick={handleAddNote}>
             Add Note
             <img src={plusicon} alt="s" className="addbtn" />
           </button>

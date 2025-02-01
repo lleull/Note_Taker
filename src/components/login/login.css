@@ -13,11 +13,14 @@
     border: 5px solid black;
     border-radius: 20px;
     width: 35%;
-    @media (width < 820px) 
-    {
+    @media (width < 820px) {
       width: 90%;
-      
     }
+    h2{
+      font-size: 40px;
+      background: linear-gradient(to right, #0a0705, #b60507);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;    }
 
     form {
       display: flex;
@@ -25,6 +28,9 @@
       align-items: center;
       justify-content: center;
       gap: 20px;
+      @media (width < 820px) {
+        width: 80%;
+      }
 
       input {
         padding: 20px 20px;
@@ -34,6 +40,21 @@
         background: #f8f8f8f1;
         color: rgb(0, 0, 0);
         border-radius: 5px;
+        font-size: 13px;
+        font-style: italic;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+      }
+      @media (width < 820px) {
+        width: 90%;
+        font-size: 24px;
+      }
+      input::placeholder{
+        font-size: 14px;
+        font-weight: 900;
+        @media (width < 820px) {
+          width: 90%;
+          font-size: 24px;
+        }
       }
 
       label {
@@ -63,7 +84,16 @@
         border-radius: 5px;
         cursor: pointer;
         font-weight: 500;
+        font-size: 14px;
+        font-weight: 400;
       }
+      @media (width < 820px) {
+        font-size: 24px;
+      }
+      button:hover{
+        background:red;
+      }
+      
 
       &:disabled {
         cursor: not-allowed;
@@ -81,5 +111,6 @@
 
 .changeh3 {
   cursor: pointer;
-  font-size: 12px;
+  font-size: 19px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
