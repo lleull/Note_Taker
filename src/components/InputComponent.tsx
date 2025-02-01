@@ -5,11 +5,10 @@ import { arrayUnion, collection, doc, getDocs, query, updateDoc, where } from 'f
 import { useSelector } from 'react-redux'
 import { db } from '../lib/firebase'
 interface NewNoteInput {
-  addNote({ note, title }: any): string,
-  removeBox:any
+  removeBox: any
 }
 
-const CustomInput: React.FC<NewNoteInput> = ({ addNote, removeBox }) => {
+const CustomInput: React.FC<NewNoteInput> = ({ removeBox }) => {
   const [note, setnote] = useState('')
   const [title, setTitle] = useState('')
   const userinfo = useSelector((state) => state?.userData)
@@ -30,6 +29,7 @@ const CustomInput: React.FC<NewNoteInput> = ({ addNote, removeBox }) => {
           note,
         }),
       })
+      removeBox()
     } catch (error) {
       console.log('err', error)
     }

@@ -28,10 +28,6 @@ export const noteReducer = (state: notetype = initialValue, action: Action) => {
         userData: action.payload
       }
     }
-    // case "DELETE_NOTE":{
-    //   return{...state, notes:[ state?.notes.filter((items:any) => items.title === action.payload)]}
-    // }
-
     default:
       return state
   }

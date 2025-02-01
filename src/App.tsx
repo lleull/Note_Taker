@@ -12,17 +12,7 @@ function App() {
   const [search, setSearch] = useState('')
   const [filteredNote, setFilteredNote] = useState([])
   const showAddForm = () => setaddNoteInputs(!addNoteInputs)
-  const notes = useSelector((state) => state?.notes)
   const userData = useSelector((state) => state.userData)
-  const dispatch = useDispatch()
-  const handleAddNotes = (notes) => {
-    dispatch({
-      type: 'ADD_NOTE',
-      payload: notes,
-    })
-
-    setaddNoteInputs(!addNoteInputs)
-  }
 
   useEffect(() => {
     if (search.length > 0) {
@@ -38,9 +28,9 @@ function App() {
   console.log('USDUSUDSD', userData)
   return (
     <>
-      { userData.id ? (
+      {userData.id ? (
         <div className="mainApp">
-          {addNoteInputs && <CustomInput addNote={handleAddNotes} />}
+          {addNoteInputs && <CustomInput removeBox={setaddNoteInputs(true)} />}
           <div className="boxWrapper">
             <div className="sidebar">
               <h2 className="Title">{userData?.username}</h2>
