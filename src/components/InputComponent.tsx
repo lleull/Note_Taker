@@ -1,13 +1,18 @@
 import React, { ChangeEvent, useState } from 'react'
 import './CustomInput.css'
 import plusicon from './../assets/plus.png'
+import { arrayUnion, collection, doc, getDocs, query, updateDoc, where } from 'firebase/firestore'
+import { useSelector } from 'react-redux'
+import { db } from '../lib/firebase'
 interface NewNoteInput {
-  addNote({note, title}:any): string
+  addNote({ note, title }: any): string,
+  removeBox:any
 }
 
-const CustomInput: React.FC<NewNoteInput> = ({ addNote }) => {
+const CustomInput: React.FC<NewNoteInput> = ({ addNote, removeBox }) => {
   const [note, setnote] = useState('')
   const [title, setTitle] = useState('')
+  const userinfo = useSelector((state) => state?.userData)
 
   const updateNote = (e: ChangeEvent<HTMLInputElement>) => {
     setnote(e.target.value)
@@ -16,16 +21,20 @@ const CustomInput: React.FC<NewNoteInput> = ({ addNote }) => {
     setTitle(e.target.value)
   }
 
-
-  const addNoteHandler = () => {
-    addNote({
-      note: note,
-      title: title,
-    })
-    setTitle(title)
-    setTitle('')
-    setnote('')
+  const handleLogin = async () => {
+    try {
+      const userRef = doc(db, 'users', userinfo?.id)
+      await updateDoc(userRef, {
+        notes: arrayUnion({
+          title,
+          note,
+        }),
+      })
+    } catch (error) {
+      console.log('err', error)
+    }
   }
+
   return (
     <>
       <div className="mainnote">
@@ -48,7 +57,7 @@ const CustomInput: React.FC<NewNoteInput> = ({ addNote }) => {
             placeholder="note"
             className="inputmore"
           />
-          <button className="btn" onClick={addNoteHandler}>
+          <button className="btn" onClick={handleLogin}>
             Add Note
             <img src={plusicon} alt="s" className="addbtn" />
           </button>

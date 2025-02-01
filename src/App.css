@@ -122,6 +122,7 @@
   border-radius: 20px;
   padding: 5px;
   margin-top: 5px;
+  color: black;
 }
 .searchinput::placeholder {
   color: black;
